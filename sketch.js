@@ -1,6 +1,6 @@
 kaboom({
-  scale: 2,
-  background: [10,150,200],
+  scale: 3,
+  background: [144,144,248],
 })
 loadSpriteAtlas("https://kaboomjs.com/sprites/dungeon.png", "atlas.json");
 
@@ -62,24 +62,16 @@ const levelConfig = {
 
 const levels = [
   [
-    "        c    ",
-    "   s   ww    ",
-    "  s      b o   ob",
-    "wwwww wwwww www D",
-    "   b     o   b                ",
-    "    wwwwwwwww",
-    "                  ",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
-    "LLLLLLLLLLLLLLLLLL",
+    "                        w",
+    "",
+    "",
+    "                  w   wwwww     ",
+    "          ",
+    "            ",
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww   wwwwwwwwwwwwwww   wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww   wwwwwwwwwwwwwww   wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    
   ],
   [
     "          www     ",
@@ -119,7 +111,7 @@ scene("game",() => {
 
   const player = add([
       sprite("hero"),
-      pos(level.getPos(2,0)),
+      pos(163, 80),
       area({scale:0.5}),
       //solid(),
       origin("bot"),
@@ -257,6 +249,10 @@ scene("game",() => {
     key = true
     c.play("open")
   })
+  
+  onUpdate(() => {
+  camPos(player.pos.x,60)
+})
     
   
 }) //end of game
@@ -270,12 +266,13 @@ scene("menu", () => {
   ])
   
   add([
-    text("Play"),
+    text("Press Enter"),
     "playButton",
     pos(width()/2,height()/2+50),
     area(),
     origin("center"),
-    scale(1/3)
+    scale(1/6),
+    color("black")
   ])
   add([
     text("Continue?"),
@@ -285,9 +282,11 @@ scene("menu", () => {
     origin("center"),
     scale(1/3)
   ])
-  onClick("playButton",() => {
+  onKeyPress("enter", () => {
     go("game")
   })
+  
+  //continue function
   
   onClick("continue",() => {
     levelNum = localStorage.getItem("level") || 0
