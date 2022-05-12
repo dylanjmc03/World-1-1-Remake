@@ -6,6 +6,7 @@ loadSpriteAtlas("https://kaboomjs.com/sprites/dungeon.png", "atlas.json");
 
 loadSprite("lava", "lava jpeg.jfif")
 loadSprite("laser", "laser.png")
+loadSound("theme", "Mario Music Full.mp3")
 const levelConfig = {
   width: 16,
   height: 16,
@@ -62,13 +63,13 @@ const levelConfig = {
 
 const levels = [
   [
-    "                        w",
+    "                        w                                                       wwwwwwww   wwwww              w           www        wwww",
     "",
     "",
-    "                  w   wwwww     ",
+    "                  w   wwwww                                                  www               w     ww    w  w  w     w              ww",
     "          ",
-    "            ",
-    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
+    "                                                                                                                                                wwww  ",
+    "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww   wwwwwwwwwwwwwww   wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
     "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww   wwwwwwwwwwwwwww   wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
     "wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww   wwwwwwwwwwwwwww   wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww  wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww",
     
@@ -99,6 +100,10 @@ scene("game",() => {
   let hp = 3
   let key = false
   
+  const music = play("theme", {
+    volume: 0.8,
+    loop: true
+})
   const level = addLevel(levels[levelNum],levelConfig)
   
  const hpLabel = add([
@@ -118,7 +123,7 @@ scene("game",() => {
       body(),
     {
       "speed":100,
-      "jumpSpeed": 350,
+      "jumpSpeed": 400,
       "health": 10
     }
   ]);
@@ -259,10 +264,10 @@ scene("game",() => {
 
 scene("menu", () => {
   add([
-    text("Dragon World"),
+    text("Super Mario Bros."),
     pos(width()/2,height()/2),
     origin("center"),
-    scale(1/3)
+    scale(28/100)
   ])
   
   add([
